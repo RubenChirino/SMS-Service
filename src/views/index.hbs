@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-4">
+    <form action="/send-sms" method="POST" class="card card-body">
+        <div class="form-group">
+            <input class="form-control" type="text" 
+            name="message" id="" placeholder="Write your message" autofocus>
+        </div>
+        <div class="form-group">
+            <input type="tel" class="form-control" name="phone"
+            placeholder="+112784569" autocomplete="off">
+        </div>
+        <button class="btn btn-primary btn-block">
+            Send 
+        </button>
+    </form>
+  </div>
+
+  <div class="col-md-8">
+    {{#if messages}}
+      <ul class="list-group" style="height: 70vh; overflow-y:auto;" id="messages">
+          {{#each messages}}
+
+          {{#if From}}
+            <li class="list-group-item received-styles">  
+              <p>{{Body}}</p>
+              <span>{{From}} {{Country}}</span> 
+              <span style="float: right;">{{timeago createdAt}}</span> 
+            </li>
+            {{else}}
+            <li class="list-group-item sended-styles">  
+              <p>{{Body}}</p>
+              <span>{{To}}</span>
+              <span style="float: right;">{{timeago createdAt}}</span>               
+            </li>          
+          {{/if}}
+            <!--<div class="list-group-item list-group-item-action">  
+              <span>{{To}}</span>
+              <span>{{From}} {{Country}}</span>
+              <p>{{Body}}</p>
+            </div>-->
+            {{/each}}    
+      </ul>       
+    {{else}}
+    <p>No messages sended and received</p>
+    {{/if}}    
+  </div>
+
+</div>
+
